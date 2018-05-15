@@ -4,25 +4,25 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {user: 'Ellen', city: 'Sun Prairie'};
+    this.state = {user: {name: 'Ellen', city: 'Sun Prairie'}};
     // this.handleChange = this.handleChange.bind(this);
   }
 
   handleNameChange = (event) => {
     // this.state.user = event.target.value; // event is a javascript thing, not a React thing
-    this.setState({user: event.target.value});
+    this.setState({user: {name: event.target.value, city: this.state.user.city}});
   }
   handleCityChange = (event) => {
-    this.setState({city: event.target.value});
+    this.setState({user: {city: event.target.value, name: this.state.user.name}});
   }
   logValues = () => {
-    console.log(this.state);
+    console.log(this.state.user);
   }
 
   render() {
     return (
       <div>
-        <p>The current user is {this.state.user} who lives in {this.state.city}</p>
+        <p>The current user is {this.state.user.name} who lives in {this.state.user.city}</p>
         <input onChange={this.handleNameChange} type="text" placeholder="name"/>
         <input onChange={this.handleCityChange} type="text" placeholder="city"/>
         <p><input onClick={this.logValues} type="submit"/></p>
